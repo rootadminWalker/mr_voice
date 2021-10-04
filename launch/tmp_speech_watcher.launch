@@ -1,0 +1,14 @@
+<launch>
+    <arg name="speeches_path" default="/tmp/speech"/>
+    <arg name="limit_amount" default="20"/>
+    <node
+            name="tmp_files_watcher"
+            pkg="mr_voice"
+            type="TmpSpeechWatcher.py"
+            required="true"
+            output="screen"
+    >
+        <param name="speeches_path" type="str" value="$(arg speeches_path)"/>
+        <param name="limit_amount" type="int" value="$(arg limit_amount)"/>
+    </node>
+</launch>
