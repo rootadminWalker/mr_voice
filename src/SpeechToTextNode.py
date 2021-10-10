@@ -60,6 +60,7 @@ class SpeechToTextNode(object):
 
         self.hotword_detected = False
         self.flowing = False
+        self.is_running = False
 
         self.snd_wakeup = AudioPlayer(
             path.join(base, 'snd/snd_wakeup.mp3')
@@ -69,8 +70,9 @@ class SpeechToTextNode(object):
         )
 
     def callback_audio_path(self, msg: String):
-        t = Thread(target=self._recognize_thread, args=(msg.data,))
-        t.start()
+        if not self.is_running:
+            t = Thread(target=self._recognize_thread, args=(msg.data,))
+            t.start()
 
     def start_flow_cb(self, req):
         self.flowing = True
@@ -110,6 +112,7 @@ class SpeechToTextNode(object):
             audio = self.sr.record(source)
 
         if self.hotword_detected:
+            self.is_running = True
             self.snd_recognized.play()
             try:
                 self.facial.publish('smiling:Recognizing')
@@ -141,6 +144,8 @@ class SpeechToTextNode(object):
                 self.snd_wakeup.play()
             else:
                 self.hotword_detected = False
+
+        self.is_running = False
 
 
 if __name__ == "__main__":
