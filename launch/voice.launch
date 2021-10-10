@@ -1,4 +1,5 @@
 <launch>
+    <include file="$(find mr_voice)/launch/tmp_speech_watcher.launch"/>
 	<node pkg="mr_voice" type="SpeakerNode.py" name="speaker" output="screen">
         <param name="rate" value="170" />
         <param name="volume" value="1.0" />
