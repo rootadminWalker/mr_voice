@@ -41,19 +41,17 @@ class SpeechToTextNode(object):
 
         base = RosPack().get_path('mr_voice')
         self.keywords_list = ['hey snippy', 'assistant', 'hey robie']
-        self.__hey_snippy_model = path.join(base,
-                                            'keyword_models/hey-snippy__en_linux_2021-10-30-utc_v1_9_0.ppn')
-        self.__assistant_model = path.join(base,
-                                           'keyword_models/assistant__en_linux_2021-10-30-utc_v1_9_0.ppn')
+        # self.__hey_snippy_model = path.join(base,
+        #                                     'keyword_models/hey-snippy__en_linux_2021-10-30-utc_v1_9_0.ppn')
+        # self.__assistant_model = path.join(base,
+        #                                    'keyword_models/assistant__en_linux_2021-10-30-utc_v1_9_0.ppn')
         self.__hey_robie_model = path.join(base,
-                                           'keyword_models/hey-robie__en_linux_2021-10-30-utc_v1_9_0.ppn')
+                                           'keyword_models/hey-robie_en_linux_v1_9_0.ppn')
 
         self.porcupine = pvporcupine.create(
             library_path=pvporcupine.LIBRARY_PATH,
             model_path=pvporcupine.MODEL_PATH,
             keyword_paths=[
-                self.__hey_snippy_model,
-                self.__assistant_model,
                 self.__hey_robie_model
             ]
         )
