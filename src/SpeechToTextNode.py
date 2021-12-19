@@ -18,7 +18,7 @@ from std_srvs.srv import Trigger, TriggerResponse
 
 
 class SpeechToTextNode(object):
-    # TODO: Try not to modify the hotword_detected variable at flowing and processing part
+    # TODO: Try not to modify the hotword_detected variable on session and processing part
     def __init__(self):
         self.topic_audio_path = rospy.get_param("topic_audio_path", "/respeaker/audio_path")
         self.topic_text = rospy.get_param("topic_text", "~text")
@@ -30,10 +30,10 @@ class SpeechToTextNode(object):
 
         rospy.set_param("~hotword_detected", False)
 
-        rospy.Service('~start_flow', Trigger, self.start_flow_cb)
-        rospy.Service('~stop_flow', Trigger, self.stop_flow_cb)
+        rospy.Service('~start_session', Trigger, self.start_session_cb)
+        rospy.Service('~stop_session', Trigger, self.stop_session_cb)
 
-        self.intent_manager_proxy = actionlib.SimpleActionClient('/snips_intent_manager', IntentManagerAction)
+        self.intent_manager_proxy = actionlib.SimpleActionClient('/intent_manager', IntentManagerAction)
 
         self.sr = sr.Recognizer()
         self.threads = []
@@ -57,7 +57,7 @@ class SpeechToTextNode(object):
         )
 
         self.hotword_detected = False
-        self.flowing = False
+        self.on_session = False
         self.is_running = False
 
         self.snd_wakeup = AudioPlayer(
@@ -72,13 +72,13 @@ class SpeechToTextNode(object):
             t = Thread(target=self._recognize_thread, args=(msg.data,))
             t.start()
 
-    def start_flow_cb(self, req):
-        self.flowing = True
-        return TriggerResponse(success=True, message="Flow started")
+    def start_session_cb(self, req):
+        self.on_session = True
+        return TriggerResponse(success=True, message="Session started")
 
-    def stop_flow_cb(self, req):
-        self.flowing = False
-        return TriggerResponse(success=True, message="Flow stopped")
+    def stop_session_cb(self, req):
+        self.on_session = False
+        return TriggerResponse(success=True, message="Session stopped")
 
     def __detect_hotword(self, audio_path):
         wav_data = soundfile.read(audio_path, dtype='int16')[0]
@@ -138,7 +138,7 @@ class SpeechToTextNode(object):
             goal.text = text
             self.intent_manager_proxy.send_goal(goal)
             self.intent_manager_proxy.wait_for_result()
-            if self.flowing:
+            if self.on_session:
                 self.snd_wakeup.play()
             else:
                 self.hotword_detected = False
