@@ -10,9 +10,9 @@ from core.tools import YourTTS
 class Speaker(object):
     def __init__(self):
         self.tts = YourTTS(
-            model_directory_path='/home/root_walker/workspace/ROS_projects/src/The_Essense_of_the_Grey_Region/models/yourtts',
-            reference_files='/home/root_walker/workspace/normal_projects/yourtts_test/reference_files/shannon.wav',
-            use_cuda=False
+            model_directory_path=rospy.get_param('~model_path'),
+            reference_files=rospy.get_param('~reference_audios'),
+            use_cuda=rospy.get_param('~use_cuda')
         )
 
         self.is_running = False

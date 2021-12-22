@@ -1,0 +1,16 @@
+<launch>
+    <arg name="model_path" default="$(find mr_voice)/models/yourtts"/>
+    <arg name="reference_audios" default="$(find mr_voice)/reference_audios"/>
+    <arg name="use_cuda" default="false"/>
+    <node
+        name="speaker"
+        pkg="mr_voice"
+        type="YourTTSSpeakerNode.py"
+        required="true"
+        output="screen"
+    >
+        <param name="model_path" type="str" value="$(arg model_path)"/>
+        <param name="reference_audios" type="str" value="$(arg reference_audios)"/>
+        <param name="use_cuda" type="bool" value="$(arg use_cuda)"/>
+    </node>
+</launch>
