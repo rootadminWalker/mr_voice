@@ -1,10 +1,10 @@
 <launch>
     <include file="$(find mr_voice)/launch/tmp_speech_watcher.launch"/>
-	<node pkg="mr_voice" type="SpeakerNode.py" name="speaker" output="screen">
-        <param name="rate" value="170" />
-        <param name="volume" value="1.0" />
-        <param name="lang" value="en-US" />
-    </node>
+<!--	<node pkg="mr_voice" type="SpeakerNode.py" name="speaker" output="screen">-->
+<!--        <param name="rate" value="170" />-->
+<!--        <param name="volume" value="1.0" />-->
+<!--        <param name="lang" value="en-US" />-->
+<!--    </node>-->
     <node pkg="mr_voice" type="SpeechToTextNode.py" name="voice" output="screen">
         <param name="topic_audio_path" value="/respeaker/audio_path" />
         <param name="topic_text" value="/voice/text" />
