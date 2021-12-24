@@ -1,6 +1,6 @@
 <launch>
     <arg name="model_path" default="$(find mr_voice)/models/yourtts"/>
-    <arg name="reference_audios" default="$(find mr_voice)/reference_audios"/>
+    <arg name="reference_audios" default="$(find mr_voice)/yourtts_reference_audios"/>
     <arg name="use_cuda" default="false"/>
     <node
         name="speaker"
