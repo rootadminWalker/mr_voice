@@ -245,6 +245,7 @@ class RespeakerAudio(object):
             format=pyaudio.paInt16,
             channels=self.available_channels,
             rate=self.rate,
+            frames_per_buffer=1024,
             stream_callback=self.stream_callback,
             input_device_index=self.device_index,
         )
@@ -317,9 +318,9 @@ def on_audio(data, channel):
                 wf.writeframes(b"".join(audio_buf))
                 wf.close()
 
-                audio = AudioSegment.from_wav(path)
-                louder = audio + 10
-                louder.export(path, format='wav')
+                # audio = AudioSegment.from_wav(path)
+                # louder = audio + 1
+                # louder.export(path, format='wav')
 
                 audio_buf = []
                 pub.publish(path)
