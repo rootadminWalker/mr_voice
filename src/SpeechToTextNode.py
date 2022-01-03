@@ -40,11 +40,9 @@ class SpeechToTextNode(object):
         self.facial.publish('happy-1:Listening')
 
         base = RosPack().get_path('mr_voice')
-        self.keywords_list = ['hey snippy', 'assistant', 'hey robie']
-        # self.__hey_snippy_model = path.join(base,
-        #                                     'keyword_models/hey-snippy__en_linux_2021-10-30-utc_v1_9_0.ppn')
-        # self.__assistant_model = path.join(base,
-        #                                    'keyword_models/assistant__en_linux_2021-10-30-utc_v1_9_0.ppn')
+        self.keywords_list = ['hey anchor', 'hey fucker']
+        self.__hey_fucker_model = path.join(base,
+                                            'models/keyword_models/hey-fucker_en_linux_v2_0_0.ppn')
         self.__hey_anchor_model = path.join(base,
                                             'models/keyword_models/hey-anchor_en_linux_v2_0_0.ppn')
 
@@ -52,7 +50,8 @@ class SpeechToTextNode(object):
             library_path=pvporcupine.LIBRARY_PATH,
             model_path=pvporcupine.MODEL_PATH,
             keyword_paths=[
-                self.__hey_anchor_model
+                self.__hey_anchor_model,
+                self.__hey_fucker_model
             ],
             access_key='RsiUIPj5Om0f8W2cwl3BIRBanqRFkDfqVHHnyNJsFgx3sh5dlWWhmg=='
         )
@@ -83,7 +82,6 @@ class SpeechToTextNode(object):
 
     def __detect_hotword(self, audio_path):
         wav_data, sample_rate = soundfile.read(audio_path, dtype='int16')
-        print(sample_rate, self.porcupine.sample_rate)
         samples_count = len(wav_data) // self.porcupine.frame_length
         for i in np.arange(samples_count):
             frame = wav_data[i * self.porcupine.frame_length:(i + 1) * self.porcupine.frame_length]
@@ -103,7 +101,6 @@ class SpeechToTextNode(object):
         with sr.AudioFile(audio_path) as source:
             if not self.hotword_detected:
                 self.hotword_detected = self.__detect_hotword(audio_path)
-                rospy.loginfo(self.hotword_detected)
                 if self.hotword_detected:
                     self.snd_wakeup.play()
                     rospy.loginfo(f'Detected hotword {self.keywords_list[self.hotword_detected]}')
