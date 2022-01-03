@@ -286,9 +286,6 @@ class RespeakerAudio(object):
 def on_audio(data, channel):
     global pub, audio_dir, respeaker_audio, respeaker_interface, max_buf, is_voice_buf, direction_buf, audio_buf, \
         silent_duration
-    if rospy.get_param('/voice/hotword_detected'):
-        rospy.sleep(.5)
-        rospy.set_param('/voice/hotword_detected', False)
 
     if channel == 0:
         if len(is_voice_buf) >= max_buf:
@@ -300,6 +297,10 @@ def on_audio(data, channel):
 
         if sum(is_voice_buf) == 0:
             if len(audio_buf) > 0:
+                if rospy.get_param('/voice/hotword_detected'):
+                    rospy.sleep(.5)
+                    rospy.set_param('/voice/hotword_detected', False)
+                    
                 direction = np.argmax(np.bincount(direction_buf))
                 filename = time.strftime("%H%M%S", time.gmtime())
                 filename = "%s-%d.wav" % (filename, direction)
