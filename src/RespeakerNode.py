@@ -297,10 +297,9 @@ def on_audio(data, channel):
 
         if sum(is_voice_buf) == 0:
             if len(audio_buf) > 0:
-                if rospy.get_param('/voice/hotword_detected'):
-                    rospy.sleep(.5)
-                    rospy.set_param('/voice/hotword_detected', False)
-                    
+                if rospy.get_param('/voice/notify_sound_playing'):
+                    return
+
                 direction = np.argmax(np.bincount(direction_buf))
                 filename = time.strftime("%H%M%S", time.gmtime())
                 filename = "%s-%d.wav" % (filename, direction)

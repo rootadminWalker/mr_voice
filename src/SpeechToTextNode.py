@@ -5,6 +5,7 @@ from threading import Thread
 
 import actionlib
 import numpy as np
+import numpy as np
 import pvporcupine
 import rospy
 import soundfile
@@ -27,8 +28,6 @@ class SpeechToTextNode(object):
         rospy.Subscriber(self.topic_audio_path, String, self.callback_audio_path)
         self.pub_voice = rospy.Publisher(self.topic_text, Voice)
         self.facial = rospy.Publisher('/home_edu/facial', String, queue_size=1)
-
-        rospy.set_param("~hotword_detected", False)
 
         rospy.Service('~start_session', Trigger, self.start_session_cb)
         rospy.Service('~stop_session', Trigger, self.stop_session_cb)
@@ -67,6 +66,15 @@ class SpeechToTextNode(object):
             path.join(base, 'snd/snd_recognized.mp3')
         )
 
+        rospy.set_param("~hotword_detected", False)
+        rospy.set_param('~notify_sound_playing', False)
+
+    @staticmethod
+    def play_notify_sound(snd):
+        rospy.set_param('~notify_sound_playing', True)
+        snd.play()
+        rospy.set_param('~notify_sound_playing', False)
+
     def callback_audio_path(self, msg: String):
         if not self.is_running:
             t = Thread(target=self._recognize_thread, args=(msg.data,))
@@ -80,9 +88,10 @@ class SpeechToTextNode(object):
         self.on_session = False
         return TriggerResponse(success=True, message="Session stopped")
 
-    def __detect_hotword(self, audio_path):
-        wav_data, sample_rate = soundfile.read(audio_path, dtype='int16')
+    def __detect_hotword(self, audio):
+        wav_data = np.frombuffer(audio.get_wav_data(), dtype='int16')
         samples_count = len(wav_data) // self.porcupine.frame_length
+
         for i in np.arange(samples_count):
             frame = wav_data[i * self.porcupine.frame_length:(i + 1) * self.porcupine.frame_length]
             result = self.porcupine.process(frame)
@@ -99,23 +108,23 @@ class SpeechToTextNode(object):
             rospy.logerr(e)
 
         with sr.AudioFile(audio_path) as source:
-            if not self.hotword_detected:
-                self.hotword_detected = self.__detect_hotword(audio_path)
-                if self.hotword_detected:
-                    self.snd_wakeup.play()
-                    rospy.loginfo(f'Detected hotword {self.keywords_list[self.hotword_detected]}')
+            audio = self.sr.record(source)
+            # if not self.hotword_detected:
+            if not rospy.get_param('/intent_manager/on_session'):
+                hotword_index = self.__detect_hotword(audio)
+                if hotword_index:
+                    self.play_notify_sound(self.snd_wakeup)
+                    rospy.loginfo(f'Detected hotword {self.keywords_list[hotword_index]}')
+                    rospy.set_param("~hotword_detected", True)
                     return
 
-            rospy.set_param("~hotword_detected", bool(self.hotword_detected))
-            audio = self.sr.record(source)
-
-        if self.hotword_detected:
+        if rospy.get_param('~hotword_detected') or rospy.get_param('/intent_manager/on_session'):
+            self.play_notify_sound(self.snd_recognized)
             self.is_running = True
-            self.snd_recognized.play()
             try:
                 self.facial.publish('smiling:Recognizing')
                 rospy.loginfo(f"recognizing file: {audio_path}")
-                text = self.sr.recognize_google(audio, language=self.lang)
+                text = self.sr.recognize_google(audio)
             except sr.UnknownValueError:
                 self.facial.publish('crying:Voice Recognition could not understand audio')
                 rospy.logerr("Voice Recognition could not understand audio")
@@ -138,10 +147,10 @@ class SpeechToTextNode(object):
             goal.text = text
             self.intent_manager_proxy.send_goal(goal)
             self.intent_manager_proxy.wait_for_result()
-            if self.on_session:
-                self.snd_wakeup.play()
-            else:
-                self.hotword_detected = False
+            if rospy.get_param('/intent_manager/on_session'):
+                self.play_notify_sound(self.snd_wakeup)
+
+            rospy.set_param('~hotword_detected', False)
 
         self.is_running = False
 
