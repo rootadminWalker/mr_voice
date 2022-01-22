@@ -297,7 +297,7 @@ def on_audio(data, channel):
 
         if sum(is_voice_buf) == 0:
             if len(audio_buf) > 0:
-                if rospy.get_param('/voice/notify_sound_playing'):
+                if rospy.get_param('/hotword_manager/notify_sound_playing'):
                     return
 
                 direction = np.argmax(np.bincount(direction_buf))
