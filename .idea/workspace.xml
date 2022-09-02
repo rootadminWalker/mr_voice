@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de394b3f-9005-433c-bd8b-366eca4d2998" name="Changes" comment=":bug: fix(Speech2Text): Fixed continue listening when recognizing issue">
-      <change afterPath="$PROJECT_DIR$/src/YourTTS.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/YourTTSSpeakerNode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/launch/beta.launch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/FlowManager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MicNode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mr_voice.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mr_voice.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SpeakerNode.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PyttsxSpeakerNode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launch/voice.launch" beforeDir="false" afterPath="$PROJECT_DIR$/launch/voice.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HotWordManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/HotWordManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RespeakerNode.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/RespeakerNode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SpeechToTextNode.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpeechToTextNode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/YourTTSSpeakerNode.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/YourTTSSpeakerNode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core" beforeDir="false" afterPath="$PROJECT_DIR$/src/core" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,22 +53,25 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1yxR2mloqoCCaG24azFJP6DweeU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.pyOptions" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/rootadminwalker/workspace/ROS_projects/src/mr_voice&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -118,6 +129,8 @@
       <workItem from="1633851768120" duration="1923000" />
       <workItem from="1633871196722" duration="672000" />
       <workItem from="1639897453815" duration="2195000" />
+      <workItem from="1657542794492" duration="3787000" />
+      <workItem from="1657549284273" duration="5213000" />
     </task>
     <task id="LOCAL-00001" summary="Pycharm changes">
       <created>1633320582016</created>
@@ -219,7 +232,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value=":new: feature(TmpSpeechWatcher): Watch for the tmp file amount&#10;This program could watch over the tmp speech files amount to prevent system storage exceed by long term testing" />
