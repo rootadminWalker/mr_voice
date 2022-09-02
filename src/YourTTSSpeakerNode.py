@@ -4,7 +4,7 @@ import rospy
 from mr_voice.srv import SpeakerSrv, SpeakerSrvResponse
 from std_msgs.msg import String
 
-from core.tools import YourTTS
+from core.hardware import YourTTS
 
 
 class Speaker(object):

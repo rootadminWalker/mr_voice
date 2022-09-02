@@ -8,10 +8,12 @@
     <node pkg="mr_voice" type="SpeechToTextNode.py" name="voice" output="screen">
         <param name="topic_audio_path" value="/respeaker/audio_path" />
         <param name="topic_text" value="/voice/text" />
-        <param name="lang" value="yue-Hant-HK" />
+        <param name="lang" value="en" />
     </node>
     <node pkg="mr_voice" type="RespeakerNode.py" name="respeaker" output="screen">
         <param name="buffer_size" value="10" />
         <param name="audio_directory" value="/tmp/speech/" />
     </node>
+    <node pkg="mr_voice" type="HotwordManager.py" name="hotword_manager" output="screen"/>
+    <node pkg="mr_voice" type="HotwordManager.py" name="flow_manager" output="screen"/>
 </launch>
