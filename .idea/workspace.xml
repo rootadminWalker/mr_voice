@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de394b3f-9005-433c-bd8b-366eca4d2998" name="Changes" comment="Latest core submodule linked">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/launch/voice.launch" beforeDir="false" afterPath="$PROJECT_DIR$/launch/voice.launch" afterDir="false" />
-    </list>
+    <list default="true" id="de394b3f-9005-433c-bd8b-366eca4d2998" name="Changes" comment="typo causes error" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,7 +122,7 @@
       <workItem from="1662109831557" duration="172000" />
       <workItem from="1662546115102" duration="236000" />
       <workItem from="1664016383164" duration="143000" />
-      <workItem from="1664017308537" duration="174000" />
+      <workItem from="1664017308537" duration="488000" />
     </task>
     <task id="LOCAL-00001" summary="Pycharm changes">
       <created>1633320582016</created>
@@ -260,7 +257,42 @@
       <option name="project" value="LOCAL" />
       <updated>1662109857445</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Add flow manager launch">
+      <created>1664017693075</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1664017693075</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Add reset trigger">
+      <created>1664017704821</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1664017704821</updated>
+    </task>
+    <task id="LOCAL-00022" summary="pycharm changes">
+      <created>1664017714933</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1664017714933</updated>
+    </task>
+    <task id="LOCAL-00023" summary="pycharm changes">
+      <created>1664017756075</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1664017756075</updated>
+    </task>
+    <task id="LOCAL-00024" summary="typo causes error">
+      <created>1664017793674</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1664017793674</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,7 +322,11 @@
     <MESSAGE value="beta" />
     <MESSAGE value="Pycharm changes" />
     <MESSAGE value="Latest core submodule linked" />
-    <option name="LAST_COMMIT_MESSAGE" value="Latest core submodule linked" />
+    <MESSAGE value="Add flow manager launch" />
+    <MESSAGE value="Add reset trigger" />
+    <MESSAGE value="pycharm changes" />
+    <MESSAGE value="typo causes error" />
+    <option name="LAST_COMMIT_MESSAGE" value="typo causes error" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/mr_voice$ASRWakeUp.coverage" NAME="ASRWakeUp Coverage Results" MODIFIED="1633618702477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../The_Essense_of_the_Grey_Region/action_controller/scripts/tests" />
