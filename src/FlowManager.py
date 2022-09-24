@@ -23,15 +23,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 """
+from os import path
+
 import actionlib
 import rospy
+from audioplayer import AudioPlayer
 from home_robot_msgs.msg import IntentManagerAction, IntentManagerGoal
 from mr_voice.msg import Voice
 from rospkg import RosPack
-from std_msgs.msg import Int16, String
+from std_msgs.msg import Int16
 from std_srvs.srv import Trigger
-from audioplayer import AudioPlayer
-from os import path
+from std_srvs.srv import TriggerResponse
 
 from core.Nodes import Node
 
@@ -59,10 +61,18 @@ class FlowManager(Node):
 
         self.speech_lock = rospy.ServiceProxy('/voice/lock', Trigger)
         self.hotword_lock = rospy.ServiceProxy('/hotword_manager/lock', Trigger)
+        rospy.Service('~reset', Trigger, self.reset_callback)
+        self.reset()
+
+        self.main()
+
+    def reset(self):
         self.lock_speech()
         self.release_hotword()
 
-        self.main()
+    def reset_callback(self, req):
+        self.reset()
+        return TriggerResponse()
 
     def play_wakeup(self):
         rospy.set_param('/flow_manager/notify_sound_playing', True)
@@ -122,4 +132,3 @@ class FlowManager(Node):
 
 if __name__ == '__main__':
     node = FlowManager()
-
