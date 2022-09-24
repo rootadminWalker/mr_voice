@@ -61,7 +61,6 @@ class FlowManager(Node):
 
         self.speech_lock = rospy.ServiceProxy('/voice/lock', Trigger)
         self.hotword_lock = rospy.ServiceProxy('/hotword_manager/lock', Trigger)
-        rospy.Service('~reset', Trigger, self.reset_callback)
         self.reset()
 
         self.main()
@@ -69,10 +68,6 @@ class FlowManager(Node):
     def reset(self):
         self.lock_speech()
         self.release_hotword()
-
-    def reset_callback(self, req):
-        self.reset()
-        return TriggerResponse()
 
     def play_wakeup(self):
         rospy.set_param('/flow_manager/notify_sound_playing', True)
