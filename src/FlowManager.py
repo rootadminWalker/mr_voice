@@ -65,10 +65,6 @@ class FlowManager(Node):
 
         self.main()
 
-    def reset(self):
-        self.lock_speech()
-        self.release_hotword()
-
     def play_wakeup(self):
         rospy.set_param('/flow_manager/notify_sound_playing', True)
         self.snd_wakeup.play()
@@ -122,7 +118,8 @@ class FlowManager(Node):
             self.rate.sleep()
 
     def reset(self):
-        pass
+        self.lock_speech()
+        self.release_hotword()
 
 
 if __name__ == '__main__':
