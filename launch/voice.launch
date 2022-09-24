@@ -14,6 +14,5 @@
         <param name="buffer_size" value="10" />
         <param name="audio_directory" value="/tmp/speech/" />
     </node>
-    <node pkg="mr_voice" type="HotwordManager.py" name="hotword_manager" output="screen"/>
-    <node pkg="mr_voice" type="HotwordManager.py" name="flow_manager" output="screen"/>
+    <node pkg="mr_voice" type="HotWordManager.py" name="hotword_manager" output="screen"/>
 </launch>
