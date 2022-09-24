@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de394b3f-9005-433c-bd8b-366eca4d2998" name="Changes" comment="beta">
-      <change beforePath="$PROJECT_DIR$/src/core" beforeDir="false" afterPath="$PROJECT_DIR$/src/core" afterDir="false" />
+    <list default="true" id="de394b3f-9005-433c-bd8b-366eca4d2998" name="Changes" comment="Latest core submodule linked">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launch/voice.launch" beforeDir="false" afterPath="$PROJECT_DIR$/launch/voice.launch" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,6 +122,10 @@
       <workItem from="1657542794492" duration="3787000" />
       <workItem from="1657549284273" duration="5213000" />
       <workItem from="1662109294520" duration="225000" />
+      <workItem from="1662109831557" duration="172000" />
+      <workItem from="1662546115102" duration="236000" />
+      <workItem from="1664016383164" duration="143000" />
+      <workItem from="1664017308537" duration="174000" />
     </task>
     <task id="LOCAL-00001" summary="Pycharm changes">
       <created>1633320582016</created>
@@ -241,7 +246,21 @@
       <option name="project" value="LOCAL" />
       <updated>1662109468575</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Pycharm changes">
+      <created>1662109846370</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1662109846370</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Latest core submodule linked">
+      <created>1662109857445</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1662109857445</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,9 +287,10 @@
     <MESSAGE value=":bug: fix(Speech2Text): Fixed continue listening when recognizing issue" />
     <MESSAGE value="Voice Assistant Revamp" />
     <MESSAGE value="Add requirements" />
-    <MESSAGE value="Pycharm changes" />
     <MESSAGE value="beta" />
-    <option name="LAST_COMMIT_MESSAGE" value="beta" />
+    <MESSAGE value="Pycharm changes" />
+    <MESSAGE value="Latest core submodule linked" />
+    <option name="LAST_COMMIT_MESSAGE" value="Latest core submodule linked" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/mr_voice$ASRWakeUp.coverage" NAME="ASRWakeUp Coverage Results" MODIFIED="1633618702477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../The_Essense_of_the_Grey_Region/action_controller/scripts/tests" />
