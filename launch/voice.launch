@@ -17,7 +17,7 @@
     <node pkg="mr_voice" type="HotWordManager.py" name="hotword_manager" output="screen"/>
     <node
             name="flow_manager"
-            pkg="rcj_pcms_base"
+            pkg="mr_voice"
             type="FlowManager.py"
             required="true"
             output="screen"
